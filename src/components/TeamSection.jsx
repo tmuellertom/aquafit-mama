@@ -4,7 +4,7 @@ import SubHeading from "./SubHeading";
 const team = [
   {
     name: "Stefanie Bender",
-    image: "/public/steffi.jpg",
+    image: "/steffi.jpg",
     description:
       "Hebamme mit Leidenschaft seit 2022, spezialisiert auf Aquafitness für Schwangere. Mutter von zwei Kindern.",
     qualifikationen: [
@@ -17,7 +17,7 @@ const team = [
   },
   {
     name: "Sandra Schönborn",
-    image: "/public/sandra.jpg",
+    image: "/sandra.jpg",
     description:
       "Hebamme mit Leidenschaft seit über 10 Jahren. Mutter von zwei Kindern und Expertin für Aquafitness in der Schwangerschaft.",
     qualifikationen: [
@@ -29,7 +29,7 @@ const team = [
   },
   {
     name: "Ina Fechler",
-    image: "/team3.jpg",
+    image: "/ina.jpg",
     description:
       "Hebamme mit Leidenschaft seit über 15 Jahren. Mutter von zwei Kindern und Expertin für Entspannungstechniken in der Schwangerschaft.",
     qualifikationen: [
