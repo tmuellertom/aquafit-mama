@@ -33,10 +33,11 @@ const team = [
     description:
       "Hebamme mit Leidenschaft seit über 15 Jahren. Mutter von zwei Kindern und Expertin für Entspannungstechniken in der Schwangerschaft.",
     qualifikationen: [
-      "Beleghebamme Praxis Ringelblume",
+      "Beleghebamme in der CTS",
       "Babymassage",
       "Ayurvedische Schwangerschaftsmassage",
-      "Erste-Hilfe am Kind",
+      "Vor- und Nachsorge",
+      "Hebammenhaus Ringelblume",
     ],
   },
 ];
