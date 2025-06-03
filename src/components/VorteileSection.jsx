@@ -116,7 +116,7 @@ const VorteileSection = () => (
         >
           <div className="relative">
             <img
-              src="/public/kurs.jpg"
+              src="/kurs.jpg"
               alt="Aquafitnesskurs"
               className="rounded-2xl shadow-xl w-full h-auto object-cover"
             />

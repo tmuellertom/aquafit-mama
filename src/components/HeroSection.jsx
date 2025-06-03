@@ -121,7 +121,7 @@ const HeroSection = () => (
       <div className="md:w-1/2 relative">
         <div className="relative">
           <motion.img
-            src="/public/aquafit-hero.png"
+            src="/aquafit-hero.png"
             alt="Aquafitness für Schwangere"
             className="rounded-2xl shadow-2xl w-full h-auto object-cover max-w-md mx-auto"
             initial={{ opacity: 0, y: 30 }}
