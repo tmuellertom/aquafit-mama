@@ -129,6 +129,13 @@ const HeroSection = () => (
             transition={{ duration: 0.7, delay: 0.3 }}
             whileHover={{ scale: 1.02 }}
           />
+          {/* Logo Overlay unten mittig, halb so breit wie das Bild, weiß */}
+          <img
+            src="/aquafitlogo.svg"
+            alt="Aquafit.Mama Logo"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 w-1/2 max-w-[50%] z-20 pointer-events-none select-none"
+            style={{ filter: "invert(1) brightness(9)" }}
+          />
           {/* Dekoelemente */}
           <motion.div
             className="absolute -bottom-4 -right-4 w-24 h-24 bg-[var(--accent)] rounded-full -z-10"
