@@ -31,7 +31,7 @@ const team = [
     name: "Ina Fechler",
     image: "/ina.jpg",
     description:
-      "Hebamme mit Leidenschaft seit über 15 Jahren. Mutter von zwei Kindern und Expertin für Entspannungstechniken in der Schwangerschaft.",
+      "Hebamme mit Leidenschaft seit über 15 Jahren. Zweifache Mutter und spezialiesiert auf Aquafitness in der Schwangerschaft.",
     qualifikationen: [
       "Beleghebamme in der CTS",
       "Babymassage",
@@ -68,11 +68,16 @@ const TeamSection = () => (
             <p className="text-gray-600 font-montserrat text-base">
               {member.description}
             </p>
-            <ul className="mt-4 text-left text-sm text-gray-700 list-disc list-inside">
-              {member.qualifikationen.map((q, i) => (
-                <li key={i}>{q}</li>
-              ))}
-            </ul>
+            <div className="mt-6 w-full">
+              <div className="font-semibold text-[var(--primary)] mb-2 text-left pl-2">
+                Weitere Qualifikationen
+              </div>
+              <ul className="text-left text-sm text-gray-700 list-disc list-inside pl-4">
+                {member.qualifikationen.map((q, i) => (
+                  <li key={i}>{q}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
       </div>
