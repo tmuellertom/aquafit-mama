@@ -3,7 +3,7 @@ import SectionHeading from "./SectionHeading";
 import SubHeading from "./SubHeading";
 import Button from "./Button";
 
-const AblaufSection = () => (
+const AblaufSection = ({ data }) => (
   <section
     id="ablauf"
     className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] py-24 px-4 relative overflow-hidden text-white"
@@ -32,89 +32,28 @@ const AblaufSection = () => (
         </p>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <motion.div
-          className="bg-white rounded-2xl p-6 shadow-lg text-[var(--text)] flex flex-col items-center text-center"
-          whileHover={{
-            y: -8,
-            boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-          }}
-          transition={{ duration: 0.3 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <div className="w-16 h-16 rounded-full bg-[var(--background)] mb-5 flex items-center justify-center">
-            <span className="text-[var(--primary)] font-bold text-2xl">1</span>
-          </div>
-          <SubHeading as="h4">Warm-up</SubHeading>
-          <p className="text-gray-600">
-            Wir starten mit sanften Aufwärmübungen, die deinen Körper optimal
-            auf das Training vorbereiten.
-          </p>
-        </motion.div>
-        <motion.div
-          className="bg-white rounded-2xl p-6 shadow-lg text-[var(--text)] flex flex-col items-center text-center"
-          whileHover={{
-            y: -8,
-            boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-          }}
-          transition={{ duration: 0.3 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <div className="w-16 h-16 rounded-full bg-[var(--background)] mb-5 flex items-center justify-center">
-            <span className="text-[var(--primary)] font-bold text-2xl">2</span>
-          </div>
-          <SubHeading as="h4">Aquafitness</SubHeading>
-          <p className="text-gray-600">
-            Speziell für Schwangere angepasste Übungen, die deinen Körper
-            stärken ohne ihn zu belasten.
-          </p>
-        </motion.div>
-        <motion.div
-          className="bg-white rounded-2xl p-6 shadow-lg text-[var(--text)] flex flex-col items-center text-center"
-          whileHover={{
-            y: -8,
-            boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-          }}
-          transition={{ duration: 0.3 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <div className="w-16 h-16 rounded-full bg-[var(--background)] mb-5 flex items-center justify-center">
-            <span className="text-[var(--primary)] font-bold text-2xl">3</span>
-          </div>
-          <SubHeading as="h4">Entspannung</SubHeading>
-          <p className="text-gray-600">
-            Zeit zum Entspannen und die wohltuenden Effekte des Wassers zu
-            genießen.
-          </p>
-        </motion.div>
-        <motion.div
-          className="bg-white rounded-2xl p-6 shadow-lg text-[var(--text)] flex flex-col items-center text-center"
-          whileHover={{
-            y: -8,
-            boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-          }}
-          transition={{ duration: 0.3 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <div className="w-16 h-16 rounded-full bg-[var(--background)] mb-5 flex items-center justify-center">
-            <span className="text-[var(--primary)] font-bold text-2xl">4</span>
-          </div>
-          <SubHeading as="h4">Austausch</SubHeading>
-          <p className="text-gray-600">
-            Gemeinsame Zeit mit anderen werdenden Mamas für Gespräche und
-            Erfahrungsaustausch.
-          </p>
-        </motion.div>
+        {data.process.map((step, index) => (
+          <motion.div
+            key={index}
+            className="bg-white rounded-2xl p-6 shadow-lg text-[var(--text)] flex flex-col items-center text-center"
+            whileHover={{
+              y: -8,
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="w-16 h-16 rounded-full bg-[var(--background)] mb-5 flex items-center justify-center">
+              <span className="text-[var(--primary)] font-bold text-2xl">
+                {index + 1}
+              </span>
+            </div>
+            <SubHeading as="h4">{step.title}</SubHeading>
+            <p className="text-gray-600">{step.description}</p>
+          </motion.div>
+        ))}
       </div>
       <motion.div
         className="mt-16 text-center"
@@ -125,7 +64,7 @@ const AblaufSection = () => (
       >
         <Button
           href="#preise"
-          className="inline-flex items-center gap-2 bg-[var(--accent)] text-[var(--text)] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[var(--accent-dark)] transition-all duration-300"
+          className="inline-flex items-center gap-2 bg-[var(--accent)] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[var(--accent-dark)] transition-all duration-300"
         >
           Kursübersicht ansehen
           <svg

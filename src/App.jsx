@@ -21,24 +21,39 @@ import TeamSection from "./components/TeamSection";
 import Footer from "./components/Footer";
 import Impressum from "./pages/Impressum";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { courses } from "./data/courses";
 import "./App.css";
 
 function App() {
+  const [currentCourse, setCurrentCourse] = useState("mama");
+  const data = courses[currentCourse];
+
+  const handleCourseToggle = (course) => {
+    setCurrentCourse(course);
+  };
+
   return (
     <Router>
-      <div className="font-montserrat text-[var(--text)] bg-[var(--background)] overflow-hidden">
+      <div
+        className="font-montserrat text-[var(--text)] bg-[var(--background)] overflow-hidden"
+        style={{ "--accent": data.accentColor, "--accent-dark": data.accentColorDark }}
+      >
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <HeroSection />
-                <VorteileSection />
-                <AblaufSection />
+                <HeroSection
+                  data={data}
+                  currentCourse={currentCourse}
+                  onToggle={handleCourseToggle}
+                />
+                <VorteileSection data={data} />
+                <AblaufSection data={data} />
                 <TeamSection />
-                <PreiseSection />
-                <KontaktSection />
+                <PreiseSection data={data} />
+                <KontaktSection data={data} />
                 <Footer />
               </>
             }

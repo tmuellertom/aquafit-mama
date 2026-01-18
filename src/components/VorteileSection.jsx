@@ -16,7 +16,7 @@ const staggerContainer = {
   },
 };
 
-const VorteileSection = () => (
+const VorteileSection = ({ data }) => (
   <section id="vorteile" className="py-20 px-4 bg-white">
     <div className="max-w-6xl mx-auto">
       <motion.div
@@ -29,7 +29,7 @@ const VorteileSection = () => (
         <SectionHeading>Deine Vorteile</SectionHeading>
         <div className="w-24 h-1 bg-[var(--accent)] mx-auto mb-6"></div>
         <p className="text-lg max-w-2xl mx-auto text-gray-600 font-montserrat">
-          Entdecke, warum Aquafitness ideal für werdende Mütter ist
+          Entdecke, warum dieser Kurs ideal für euch ist
         </p>
       </motion.div>
       <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -50,61 +50,23 @@ const VorteileSection = () => (
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <motion.li className="flex items-start gap-4" variants={fadeIn}>
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--background)] flex items-center justify-center">
-                <span className="text-[var(--primary)] text-xl">✓</span>
-              </div>
-              <div>
-                <SubHeading as="h4">Stärkung deines Körpers</SubHeading>
-                <p className="text-gray-600 text-base font-montserrat">
-                  Schonende Übungen im Wasser kräftigen deine Muskulatur
-                </p>
-              </div>
-            </motion.li>
-            <motion.li className="flex items-start gap-4" variants={fadeIn}>
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--background)] flex items-center justify-center">
-                <span className="text-[var(--primary)] text-xl">✓</span>
-              </div>
-              <div>
-                <SubHeading as="h4">Sanfte Bewegung</SubHeading>
-                <p className="text-gray-600 text-base font-montserrat">
-                  Entlastung für deine Gelenke und deinen Rücken
-                </p>
-              </div>
-            </motion.li>
-            <motion.li className="flex items-start gap-4" variants={fadeIn}>
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--background)] flex items-center justify-center">
-                <span className="text-[var(--primary)] text-xl">✓</span>
-              </div>
-              <div>
-                <SubHeading as="h4">Entspannung pur</SubHeading>
-                <p className="text-gray-600 text-base font-montserrat">
-                  Wohltuende Übungen für dich & dein Baby
-                </p>
-              </div>
-            </motion.li>
-            <motion.li className="flex items-start gap-4" variants={fadeIn}>
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--background)] flex items-center justify-center">
-                <span className="text-[var(--primary)] text-xl">✓</span>
-              </div>
-              <div>
-                <SubHeading as="h4">Gemeinschaft erleben</SubHeading>
-                <p className="text-gray-600 text-base font-montserrat">
-                  Austausch mit anderen werdenden Müttern
-                </p>
-              </div>
-            </motion.li>
-            <motion.li className="flex items-start gap-4" variants={fadeIn}>
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--background)] flex items-center justify-center">
-                <span className="text-[var(--primary)] text-xl">✓</span>
-              </div>
-              <div>
-                <SubHeading as="h4">Vorbereitung auf die Geburt</SubHeading>
-                <p className="text-gray-600 text-base font-montserrat">
-                  Trainiere deine Ausdauer und Atmung für die Geburt
-                </p>
-              </div>
-            </motion.li>
+            {data.benefits.map((benefit, index) => (
+              <motion.li
+                key={index}
+                className="flex items-start gap-4"
+                variants={fadeIn}
+              >
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--background)] flex items-center justify-center">
+                  <span className="text-[var(--primary)] text-xl">✓</span>
+                </div>
+                <div>
+                  <SubHeading as="h4">{benefit.title}</SubHeading>
+                  <p className="text-gray-600 text-base font-montserrat">
+                    {benefit.description}
+                  </p>
+                </div>
+              </motion.li>
+            ))}
           </motion.ul>
         </motion.div>
         <motion.div
@@ -116,7 +78,7 @@ const VorteileSection = () => (
         >
           <div className="relative">
             <img
-              src="/kurs.jpg"
+              src={data.benefitsImage}
               alt="Aquafitnesskurs"
               className="rounded-2xl shadow-xl w-full h-auto object-cover"
             />
@@ -151,13 +113,12 @@ const VorteileSection = () => (
             </span>
           </div>
           <p className="text-xl italic text-gray-700 mb-6 font-lovelo">
-            „Ich habe mich jede Woche auf die Auszeit im Wasser gefreut – es hat
-            mir körperlich und mental so gut getan."
+            „{data.testimonial.text}“
           </p>
           <div className="flex items-center justify-center space-x-2">
             <span className="h-2 w-2 rounded-full bg-[var(--primary-dark)]"></span>
             <p className="font-medium text-[var(--primary-dark)] font-montserrat">
-              Jessica, 32 Wochen schwanger
+              {data.testimonial.name}
             </p>
           </div>
         </div>

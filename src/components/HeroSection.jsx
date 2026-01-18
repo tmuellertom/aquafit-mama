@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Button from "./Button";
 import Header from "./Header";
 
-const HeroSection = () => (
+const HeroSection = ({ data, currentCourse, onToggle }) => (
   <section className="relative bg-gradient-to-br from-[var(--primary)] via-[var(--primary)] to-[var(--primary-dark)] text-white min-h-[90vh] pt-6 pb-20 overflow-hidden">
     {/* Dekorative Luftblasen */}
     <div className="absolute top-0 left-0 w-full h-full">
@@ -20,23 +20,24 @@ const HeroSection = () => (
         style={{ animationDelay: "1.5s" }}
       ></div>
     </div>
-    <Header />
+    <Header currentCourse={currentCourse} onToggle={onToggle} logo={data.logo} />
     <motion.div
+      key={currentCourse} // Re-animate on course change
       className="mt-12 md:mt-16 container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative z-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 0.5, duration: 0.8 }}
+      transition={{ delay: 0.2, duration: 0.8 }}
     >
       {/* Hero Text */}
       <div className="md:w-1/2 text-left">
         <motion.h2
-          className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight font-lovelo"
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight font-shrikhand"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="block">Aquafitness</span>
-          <span className="text-[var(--accent)]">für werdende Mamas</span>
+          <span className="block">{data.title}</span>
+          <span className={data.subtitleColor}>{data.subtitle}</span>
         </motion.h2>
         <motion.p
           className="text-xl mb-8 text-white/90 max-w-lg font-montserrat"
@@ -44,8 +45,7 @@ const HeroSection = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          Ganzheitliche Bewegung & Wohlbefinden in der Schwangerschaft mit
-          professioneller Begleitung in deiner Nähe.
+          {data.description}
         </motion.p>
         <motion.div
           className="flex flex-wrap gap-4"
@@ -55,7 +55,7 @@ const HeroSection = () => (
         >
           <Button
             href="#kontakt"
-            className="bg-[var(--accent)] text-[var(--text)] shadow-lg hover:bg-[var(--accent-dark)] transform hover:scale-105"
+            className="bg-[var(--accent)] text-white shadow-lg hover:bg-[var(--accent-dark)] transform hover:scale-105"
           >
             Kurs buchen
           </Button>
@@ -71,8 +71,8 @@ const HeroSection = () => (
       <div className="md:w-1/2 relative">
         <div className="relative">
           <motion.img
-            src="/aquafit-hero.png"
-            alt="Aquafitness für Schwangere"
+            src={data.heroImage}
+            alt={`${data.title} ${data.subtitle}`}
             className="rounded-2xl shadow-2xl w-full h-auto object-cover max-w-md mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -81,8 +81,8 @@ const HeroSection = () => (
           />
           {/* Logo Overlay unten mittig, halb so breit wie das Bild, weiß */}
           <img
-            src="/aquafitlogo.svg"
-            alt="Aquafit.Mama Logo"
+            src={data.logo}
+            alt="Aquafit Logo"
             className="absolute bottom-4 left-1/2 -translate-x-1/2 w-1/2 max-w-[50%] z-20 pointer-events-none select-none"
             style={{ filter: "invert(1) brightness(9)" }}
           />

@@ -1,19 +1,40 @@
 import { motion } from "framer-motion";
 import Button from "./Button";
 
-const Header = () => (
+const Header = ({ currentCourse, onToggle, logo }) => (
   <header className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center relative z-10 pt-6">
     <motion.div
-      className="flex items-center"
+      className="flex items-center gap-4"
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
       <img
-        src="/aquafitlogo.svg"
+        src={logo || "/aquafitlogo.svg"}
         alt="Aquafit.Mama Logo"
         className="w-15 h-15 mr-1 text-white bg-white rounded-md"
       />
+      {/* Course Toggle */}
+      <div className="bg-white/30 p-1.5 rounded-full flex items-center backdrop-blur-md border border-white/40 shadow-xl">
+        <button
+          onClick={() => onToggle("mama")}
+          className={`px-6 py-2 rounded-full text-base font-bold transition-all duration-300 ${currentCourse === "mama"
+            ? "bg-[var(--accent)] text-white shadow-md transform scale-105"
+            : "text-white hover:bg-white/20"
+            }`}
+        >
+          Mama
+        </button>
+        <button
+          onClick={() => onToggle("baby")}
+          className={`px-6 py-2 rounded-full text-base font-bold transition-all duration-300 ${currentCourse === "baby"
+            ? "bg-[var(--accent)] text-white shadow-md transform scale-105"
+            : "text-white hover:bg-white/20"
+            }`}
+        >
+          Baby
+        </button>
+      </div>
     </motion.div>
     <motion.nav
       className="space-x-4 mt-6 md:mt-0"
@@ -47,7 +68,7 @@ const Header = () => (
       </a>
       <Button
         href="#kontakt"
-        className="ml-2 px-4 py-2 bg-[var(--accent)] text-[var(--text)] font-bold rounded-full hover:bg-[var(--accent-dark)] transition-colors duration-300 font-montserrat"
+        className="ml-2 px-4 py-2 bg-[var(--accent)] text-white font-bold rounded-full hover:bg-[var(--accent-dark)] transition-colors duration-300 font-montserrat"
       >
         Kontakt
       </Button>

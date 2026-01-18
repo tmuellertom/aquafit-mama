@@ -15,7 +15,7 @@ const staggerContainer = {
   },
 };
 
-const PreiseSection = () => (
+const PreiseSection = ({ data }) => (
   <section id="preise" className="py-24 px-4 bg-white">
     <div className="container mx-auto max-w-6xl">
       <motion.div
@@ -59,15 +59,22 @@ const PreiseSection = () => (
                 </p>
               </div>
             </li>
-            <li className="flex items-start gap-3">
-              <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center">
-                <span className="text-amber-600 text-sm">€</span>
-              </div>
-              <div>
-                <span className="font-medium">6er Kurs: 95 €</span>
-                <p className="text-gray-600 text-sm">Nur 15 € pro 45 Minuten</p>
-              </div>
-            </li>
+            {data.prices.map((price, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center">
+                  <span className="text-amber-600 text-sm">€</span>
+                </div>
+                <div>
+                  <span className="font-medium">
+                    {price.title}: {price.price}
+                  </span>
+                  <p className="text-gray-600 text-sm">
+                    {price.features.join(" • ")}
+                  </p>
+                </div>
+              </li>
+            ))}
+
             <li className="flex items-start gap-3">
               <div className="flex-shrink-0 mt-1 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center">
                 {/* Standort-Icon */}
@@ -79,33 +86,26 @@ const PreiseSection = () => (
                 </svg>
               </div>
               <div>
-                <span className="font-medium">Verschiedene Standorte</span>
-                <ul className="mt-2 space-y-2">
-                  <li className="flex items-center gap-2">
-                    <span className="inline-block w-2 h-2 bg-[var(--primary)] rounded-full"></span>
-                    <span>Hallenbad Dudweiler</span>
-                    <span className="text-gray-500 text-sm">
-                      Mittwoch 10:30 – 11:15 Uhr
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="inline-block w-2 h-2 bg-[var(--primary)] rounded-full"></span>
-                    <span>Kombibad Fechingen</span>
-                    <span className="text-gray-500 text-sm">
-                      Dienstag 17:30 – 18:15 Uhr
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2 opacity-70">
-                    <span className="inline-block w-2 h-2 bg-gray-300 rounded-full"></span>
-                    <span className="line-through">Hallenbad Dudweiler</span>
-                    <span className="text-gray-400 text-sm line-through">
-                      Mittwoch 9:30 – 10:15 Uhr
-                    </span>
-                    <span className="ml-2 px-2 py-[2px] bg-yellow-100 text-yellow-700 text-xs rounded-full font-semibold">
-                      bald verfügbar
-                    </span>
-                  </li>
-                </ul>
+                <span className="font-medium">Standort: {data.location.name}</span>
+                <p className="text-gray-600 text-sm mb-2">
+                  {data.location.address}
+                </p>
+                <div className="space-y-1">
+                  {data.location.details.map((detail, i) => (
+                    <p key={i} className="text-sm font-medium text-[var(--primary)] flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)]"></span>
+                      {detail}
+                    </p>
+                  ))}
+                </div>
+                <a
+                  href={data.location.mapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-gray-400 hover:text-[var(--accent)] underline mt-2 inline-block"
+                >
+                  Auf Karte zeigen
+                </a>
               </div>
             </li>
           </ul>
