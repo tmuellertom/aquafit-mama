@@ -86,13 +86,18 @@ const PreiseSection = ({ data }) => (
                 </svg>
               </div>
               <div>
-                <span className="font-medium">Standort: {data.location.name}</span>
+                <span className="font-medium">
+                  Standort: {data.location.name}
+                </span>
                 <p className="text-gray-600 text-sm mb-2">
                   {data.location.address}
                 </p>
                 <div className="space-y-1">
                   {data.location.details.map((detail, i) => (
-                    <p key={i} className="text-sm font-medium text-[var(--primary)] flex items-center gap-2">
+                    <p
+                      key={i}
+                      className="text-sm font-medium text-[var(--primary)] flex items-center gap-2"
+                    >
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)]"></span>
                       {detail}
                     </p>
@@ -116,6 +121,7 @@ const PreiseSection = ({ data }) => (
           </div>
         </motion.div>
         <motion.div
+          id="anmeldung"
           className="bg-gradient-to-br from-[var(--primary)] to-[var(--primary-dark)] text-white p-8 rounded-2xl shadow-xl relative overflow-hidden"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -138,12 +144,23 @@ const PreiseSection = ({ data }) => (
               </ol>
             </div>
             <p className="italic mb-8">Wir freuen uns auf dich! 💙</p>
-            <Button
-              href="#kontakt"
-              className="bg-white text-[var(--primary)] shadow-lg hover:bg-gray-100"
-            >
-              Kontakt aufnehmen
-            </Button>
+            <div className="flex flex-row flex-wrap gap-3">
+              <Button
+                href="#kontakt"
+                className="border border-white/70 text-white bg-transparent hover:bg-white/15"
+              >
+                Kontakt aufnehmen
+              </Button>
+              {data.pdfLink && (
+                <Button
+                  href={data.pdfLink}
+                  download
+                  className="bg-[var(--accent)] text-white shadow-lg hover:bg-[var(--accent-dark)] flex items-center gap-2"
+                >
+                  Anmeldeformular
+                </Button>
+              )}
+            </div>
           </div>
           <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full transform translate-x-16 -translate-y-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full transform -translate-x-12 translate-y-12"></div>

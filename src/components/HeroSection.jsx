@@ -20,7 +20,11 @@ const HeroSection = ({ data, currentCourse, onToggle }) => (
         style={{ animationDelay: "1.5s" }}
       ></div>
     </div>
-    <Header currentCourse={currentCourse} onToggle={onToggle} logo={data.logo} />
+    <Header
+      currentCourse={currentCourse}
+      onToggle={onToggle}
+      logo={data.logo}
+    />
     <motion.div
       key={currentCourse} // Re-animate on course change
       className="mt-12 md:mt-16 container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative z-10"
@@ -54,7 +58,7 @@ const HeroSection = ({ data, currentCourse, onToggle }) => (
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <Button
-            href="#kontakt"
+            href="#preise"
             className="bg-[var(--accent)] text-white shadow-lg hover:bg-[var(--accent-dark)] transform hover:scale-105"
           >
             Kurs buchen
