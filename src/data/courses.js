@@ -161,6 +161,7 @@ export const courses = {
         highlight: true,
       },
     ],
+    pdfLink: "/Anmeldung_Aquafit_Baby.pdf",
     location: {
       name: "Kombibad Altenkessel",
       address: "Großwaldstraße, 66126 Saarbrücken",
